@@ -1,0 +1,28 @@
+.inputContainer {
+    display: grid;
+    grid-template-columns: 80% 1fr;
+    grid-template-areas:"input";
+}
+
+.inputContainer textarea {
+    outline: none;
+    border: 1px solid #47bdf6;
+    background-color: #ffffff;
+    caret-color: #47bdf6;
+    resize: none;
+    width: 100%;
+    height: 100%;
+}
+
+.inputContainer .submitBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 140ms ease;
+    background: #47bdf6;
+}
+
+.submitBtn:hover {
+    background: #1fb0e9;
+}

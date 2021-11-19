@@ -1,0 +1,27 @@
+.row {
+ display: grid;
+ margin: auto;
+ grid-template-columns: 20% 1fr;
+ grid-gap: 10px;
+ max-width: 1000px;
+ max-height: 700px;
+ height: 100vh;
+ justify-content: space-between;
+ grid-template-areas:
+ "nav messenger";
+}
+
+.nav{
+ grid-area: nav;
+ background: #c1c1c1;
+}
+
+.messenger {
+ display: grid;
+ grid-area: messenger;
+ grid-template-rows: 90% 1fr;
+ background: #ececec;
+ overflow-y: auto;
+}
+
+
