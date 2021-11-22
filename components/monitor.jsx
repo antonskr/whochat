@@ -6,7 +6,6 @@ import Messages from "./messages";
 const Monitor = ({data}) => {
 
 
-    console.log(data.messages.length)
 
     return (
         <div className={styles.monitor}>

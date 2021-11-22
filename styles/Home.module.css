@@ -17,11 +17,9 @@
 }
 
 .messenger {
- display: grid;
- grid-area: messenger;
- grid-template-rows: 90% 1fr;
+ position: relative;
+ width: 100%;
  background: #ececec;
- overflow-y: auto;
 }
 
 

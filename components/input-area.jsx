@@ -1,14 +1,29 @@
 import styles from "../styles/InputArea.module.css";
 import {useEffect, useState} from "react";
+import Helper from "../helper";
 
 
 const InputArea = ({controller}) => {
 
     const [state, setState] = useState({
-            text: ''
+        text: ''
     });
 
     useEffect(() => {
+        let div = document.querySelector(`.${styles.taFrame}`);
+        let ta = document.querySelector('textarea');
+
+        ta.addEventListener('keydown', autosize);
+
+        function autosize() {
+            setTimeout(function () {
+                ta.style.cssText = 'height:52px'; // 文字を削除した場合にscrollHeightを縮めるためにこれが必要
+                let height = Math.min(50 * 5, ta.scrollHeight);
+                div.style.cssText = 'height:' + height + 'px';
+                ta.style.cssText = 'height:' + height + 'px';
+            }, 0);
+        }
+
     }, [state.text])
 
 
@@ -21,34 +36,29 @@ const InputArea = ({controller}) => {
         })
     }
 
-    function submitMessage (e) {
-        if (e.code === 'Enter') {
-            let textArea = document.getElementById('textarea')
-            textArea.style.height = `${textArea.clientHeight + 10}px`
-        }
-        if(e.code === 'Enter' || e.type === 'click') {
-            controller(state.text)
-            updateState('text', '') // clear textarea
+    async function submitMessage(e) {
+        if (e.code === 'Enter' || e.type === 'click' && state.text) {
+             Helper.sendMessage(state.text);
+            updateState('text', '')
         }
     }
 
-    function writer(e){
+    function writer(e) {
         updateState('text', e.target.value)
     }
 
     return (
-        <div className={styles.inputContainer}>
-           <div id={"textarea"}>
+        <div className={styles.taFrame}>
+            <div className={styles.textAreaContainer}>
                 <textarea onChange={writer}
-                          onKeyDown={submitMessage}
-                          value={state.text}
-                          placeholder={'Message'}
-
+                          onKeyPress={submitMessage}
+                          rows='1' value={state.text}
                 />
-           </div>
-            <div className={styles.submitBtn}
-                 onClick={submitMessage}>
-                SUBMIT
+            </div>
+            <div className={styles.btnContainer}>
+                <button onClick={submitMessage}>
+                    SUBMIT
+                </button>
             </div>
         </div>
     );

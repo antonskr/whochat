@@ -1,5 +1,6 @@
+
 .monitor {
+    flex: 1;
+    background-color: #eaeaea;
     overflow-y: auto;
-    word-wrap: break-word;
-    padding: 10px;
 }

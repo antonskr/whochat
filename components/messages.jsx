@@ -5,7 +5,7 @@ const Messages = ({messages}) => {
                 messages.map((message, i) => {
                     return (
                       <div key={message + i}>
-                          <p >
+                          <p>
                               {message}
                           </p>
                       </div>

@@ -12,7 +12,7 @@ export default function Home() {
               navbar
           </div>
           <div className={styles.messenger}>
-             <MessengerController/>
+                  <MessengerController/>
           </div>
       </div>
   )
