@@ -3,11 +3,12 @@ import {useEffect, useState} from "react";
 import Helper from "../helper";
 
 
-const InputArea = ({controller}) => {
+const InputArea = ({handlePost}) => {
 
     const [state, setState] = useState({
         text: ''
     });
+
 
     useEffect(() => {
         let div = document.querySelector(`.${styles.taFrame}`);
@@ -38,7 +39,8 @@ const InputArea = ({controller}) => {
 
     async function submitMessage(e) {
         if (e.code === 'Enter' || e.type === 'click' && state.text) {
-             Helper.sendMessage(state.text);
+            Helper.sendMessage(state.text);
+            handlePost(state.text)
             updateState('text', '')
         }
     }
@@ -49,17 +51,17 @@ const InputArea = ({controller}) => {
 
     return (
         <div className={styles.taFrame}>
-            <div className={styles.textAreaContainer}>
+                <div className={styles.textAreaContainer}>
                 <textarea onChange={writer}
                           onKeyPress={submitMessage}
                           rows='1' value={state.text}
                 />
-            </div>
-            <div className={styles.btnContainer}>
-                <button onClick={submitMessage}>
-                    SUBMIT
-                </button>
-            </div>
+                </div>
+                <div className={styles.btnContainer}>
+                    <button onClick={submitMessage}>
+                        SUBMIT
+                    </button>
+                </div>
         </div>
     );
 }

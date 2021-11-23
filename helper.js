@@ -29,16 +29,43 @@ module.exports = new function () {
     });
 
     this.getMessages = async function () {
+
+
+
+
         client.query({query: gql`query {
                 messages {id,message}
-      }`}).then(result => console.log(result));
+      }`}).then((res) => {
+          console.log(res)
+         return res
+        });
+
+
     }
 
     this.sendMessage = async function (message) {
         client.mutate({mutation: gql` mutation {
        create_messages_item(data: { message: "${message}"}) 
        {message}
-     }`}).then(result => console.log(result));
+     }`}).then(result => result);
     }
+
+    this.fetchReviews = async function () {
+        const url = `http://localhost:3000/api/socketio
+		`.replace(/\s/g, '');
+        const response = await fetch(url, {
+            body: JSON.stringify('hello')
+        });
+        const json = await response.json();
+
+        if (!json ||
+            json.errors
+        ) {
+            console.warn('Reviews fetching error', json ? json.errors : null);
+        }
+
+        return json || null;
+    };
+
 
 }

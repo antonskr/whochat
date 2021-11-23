@@ -6,7 +6,6 @@ import Messages from "./messages";
 const Monitor = ({data}) => {
 
 
-
     return (
         <div className={styles.monitor}>
             {
