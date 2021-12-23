@@ -1,0 +1,51 @@
+.title {
+    font-size: 30px;
+    color: #fff;
+}
+
+.user {
+    position: relative;
+    color: #fff;
+}
+.users .active {
+    position: relative;
+    color: #0495fc;
+}
+
+.users .inActive {
+    position: relative;
+    color: #9f9f9f;
+}
+
+.users .active .status {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    background: #0fd245;
+}
+
+.users .user .status {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    background: #0fd245;
+}
+
+.users .inActive .status {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    background: #d20f36;
+}

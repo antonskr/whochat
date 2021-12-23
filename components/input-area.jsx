@@ -1,52 +1,43 @@
 import styles from "../styles/InputArea.module.css";
 import {useEffect, useState} from "react";
-import Helper from "../helper";
+import {useSocketContext} from "../contexts/socket";
 
+const InputArea = ({uuid}) => {
+    const socket = useSocketContext();
 
-const InputArea = ({handlePost}) => {
-
-    const [state, setState] = useState({
-        text: ''
-    });
+    const [text, setText] = useState('');
 
 
     useEffect(() => {
         let div = document.querySelector(`.${styles.taFrame}`);
         let ta = document.querySelector('textarea');
 
-        ta.addEventListener('keydown', autosize);
+      /*  ta.addEventListener('keydown', autosize);
 
         function autosize() {
             setTimeout(function () {
-                ta.style.cssText = 'height:52px'; // 文字を削除した場合にscrollHeightを縮めるためにこれが必要
+                ta.style.cssText = 'height:50px'; // 文字を削除した場合にscrollHeightを縮めるためにこれが必要
                 let height = Math.min(50 * 5, ta.scrollHeight);
                 div.style.cssText = 'height:' + height + 'px';
                 ta.style.cssText = 'height:' + height + 'px';
             }, 0);
-        }
+        }*/
 
-    }, [state.text])
+    }, [text])
 
 
-    function updateState(key, value) {
-        setState((prev) => {
-            return {
-                ...prev,
-                [key]: value
-            }
-        })
-    }
+
 
     async function submitMessage(e) {
-        if (e.code === 'Enter' || e.type === 'click' && state.text) {
-            Helper.sendMessage(state.text);
-            handlePost(state.text)
-            updateState('text', '')
+        if (e.code === 'Enter' || e.type === 'click' && text && socket) {
+            socket.emit('message', {message: text, user_id: uuid})
+            setText('')
         }
     }
 
     function writer(e) {
-        updateState('text', e.target.value)
+        setText(e.target.value)
+        socket.emit('writes', {user_id: uuid})
     }
 
     return (
@@ -54,7 +45,7 @@ const InputArea = ({handlePost}) => {
                 <div className={styles.textAreaContainer}>
                 <textarea onChange={writer}
                           onKeyPress={submitMessage}
-                          rows='1' value={state.text}
+                          rows='1' value={text}
                 />
                 </div>
                 <div className={styles.btnContainer}>

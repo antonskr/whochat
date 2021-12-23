@@ -1,0 +1,7 @@
+.message {
+    display: flex;
+    word-break: break-word;
+}
+.message p {
+    max-width: 300px;
+}

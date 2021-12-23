@@ -1,13 +1,14 @@
-
-
-import {AppWrapper} from '../state'; // import based on where you put it
+import {AppSocketContext} from '../contexts/socket'; // import based on where you put it
+import {AppUuidContext} from '../contexts/uuid'; // import based on where you put it
 
 
 export default function Application({Component, pageProps}) {
     return (
-        <AppWrapper>
-            <Component {...pageProps} />
-        </AppWrapper>
+        <AppSocketContext>
+            <AppUuidContext>
+                <Component {...pageProps} />
+            </AppUuidContext>
+        </AppSocketContext>
     )
 }
 

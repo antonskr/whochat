@@ -43,10 +43,12 @@
 .contents textarea {
     margin:  0;
     padding: 0;
-    outline: 0;
+
     width: 100%;
     font-size: 20px;
     resize: none;
     height: 100%;
-    border: 1px solid deepskyblue;
+    outline-offset: -1px;
+    outline: 1px solid #2094d7;
+    border: none;
 }

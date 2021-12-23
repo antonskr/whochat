@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev && cd server node server.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,6 +11,7 @@
   "dependencies": {
     "@apollo/client": "^3.4.17",
     "apollo-server-micro": "2.25.0",
+
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql": "^15.7.2",
